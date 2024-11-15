@@ -19,11 +19,11 @@ int main()
 	vector<Vector2f> vertices;
 	vector<Vector2f> points;
 
-	// create and load font
+	// create and load font V
 	Font font;
 	font.loadFromFile("KOMIKAP_.ttf");
 
-	// create text
+	// create text V
 	Text text;
 	text.SetFont(font);
 	text.setString("FILL IN MESSAGE HERE");
@@ -62,7 +62,9 @@ int main()
 			    else if(points.size() == 0)
 			    {
 				///fourth click
-				///push back to points vector
+				///push back to points vector V
+				points.push_back(
+				
 			    }
 			}
 		    }
@@ -90,7 +92,7 @@ int main()
 		Draw
 		****************************************
 		*/
-		//draw text
+		//draw text V
 		window.draw(text);
 
 		
