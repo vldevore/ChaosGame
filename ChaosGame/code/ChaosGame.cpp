@@ -90,6 +90,10 @@ int main()
 		Draw
 		****************************************
 		*/
+		//draw text
+		window.draw(text);
+
+		
 		window.clear();
 		for(int i = 0; i < vertices.size(); i++)
 		{
