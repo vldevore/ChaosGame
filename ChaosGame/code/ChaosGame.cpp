@@ -19,6 +19,19 @@ int main()
 	vector<Vector2f> vertices;
 	vector<Vector2f> points;
 
+	// create and load font
+	Font font;
+	font.loadFromFile("KOMIKAP_.ttf");
+
+	// create text
+	Text text;
+	text.SetFont(font);
+	text.setString("FILL IN MESSAGE HERE");
+	text.setCharacterSize(SET SIZE);
+	text.setFillColor(Color::Black);
+	
+	
+
 	while (window.isOpen())
 	{
 		/*
