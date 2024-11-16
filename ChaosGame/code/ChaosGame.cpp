@@ -19,18 +19,24 @@ int main()
 	vector<Vector2f> vertices;
 	vector<Vector2f> points;
 
-	// create and load font V
-	Font font;
-	font.loadFromFile("KOMIKAP_.ttf");
+	int iterations = 10000;
 
-	// create text V
-	Text text;
-	text.SetFont(font);
+	// create and load font V //made it more clear we are using SFML with "sff::"
+	sf::Font font;
+	font.loadFromFile("KOMTITA_.ttf");
+
+	// create text V //made it more clear we are using SFML with "sf::"
+	sf::Text text;
+	text.setFont(font);
+	//fixed "SetString to setString" T
 	text.setString("Click any three points on the screen to create a triangle, then click where you would like to create a starting point.");
-	text.setCharacterSize(SET SIZE);
-	text.setFillColor(Color::Black);
+	text.setCharacterSize(24);
+	//set color to white so it shows on the game screen
+	text.setFillColor(Color::White);
+	text.setPosition(0, 0);
 	
-	
+	//stops the player from adding any more points after the third. T
+	bool canClick = true;
 
 	while (window.isOpen())
 	{
@@ -49,7 +55,7 @@ int main()
 		    }
 		    if (event.type == sf::Event::MouseButtonPressed)
 		    {
-			if (event.mouseButton.button == sf::Mouse::Left)
+			if (event.mouseButton.button == sf::Mouse::Left && canClick)
 			{
 			    std::cout << "the left button was pressed" << std::endl;
 			    std::cout << "mouse x: " << event.mouseButton.x << std::endl;
@@ -62,9 +68,9 @@ int main()
 			    else if(points.size() == 0)
 			    {
 				///fourth click
-				///push back to points vector V 
 				points.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
-				
+				//stops player from adding more points. T
+				canClick = false;
 			    }
 			}
 		    }
@@ -79,17 +85,17 @@ int main()
 		****************************************
 		*/
 	
-		if(points.size() > 0)
+		if (points.size() > 0 && points.size() < iterations)
 		{
-		    ///generate more point(s)
-			
-		    ///select random vertex V
+			// generate more point(s)
+
+			// select random vertex
 			Vector2f randVertex = (vertices.at(rand() % 3));
-			
-		    ///calculate midpoint between random vertex and the last point in the vector V
-			Vector2f midpoint = (((randVertex.x + points.back().x) / 2), ((randVertex.y + points.back().y) / 2);
-		
-		    ///push back the newly generated coord V
+
+			// calculate midpoint between random vertex and the last point in the vector
+			Vector2f midpoint = Vector2f((randVertex.x + points.back().x) / 2, (randVertex.y + points.back().y) / 2);
+
+			// push back the newly generated coordinate
 			points.push_back(midpoint);
 		}
 	
@@ -118,10 +124,19 @@ int main()
 			CircleShape triangle(8, 3);
 			triangle.setPosition(Vector2f(vertices[i].x, vertices[i].y));
 			triangle.setOutlineThickness(3);
-			triangle.setOutlineColor(Color(250, 150, 100);
+			triangle.setOutlineColor(Color(250, 150, 100));
 			window.draw(triangle);
 		}
 		
+		//created a way to render all the points onto the screen. T
+		for (const Vector2f point : points)
+		{
+			CircleShape triangle(8, 3);
+			triangle.setPosition(point);
+			triangle.setOutlineThickness(2);
+			triangle.setOutlineColor(Color(250, 150, 100));
+			window.draw(triangle);
+		}
 		
 		window.display();
 	}
