@@ -23,7 +23,7 @@ int main()
 
 	// create and load font V //made it more clear we are using SFML with "sff::"
 	sf::Font font;
-	font.loadFromFile("KOMTITA_.ttf");
+	font.loadFromFile("Roboto_Light.ttf");
 
 	// create text V //made it more clear we are using SFML with "sf::"
 	sf::Text text;
