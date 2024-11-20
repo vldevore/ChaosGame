@@ -127,15 +127,23 @@ int main()
 			triangle.setOutlineColor(Color(250, 150, 100));
 			window.draw(triangle);
 		}
-		
+
+		// clear screen after original 3 points are clicked and draw text
+		if (!canClick)
+		{
+			window.clear();
+			window.draw(text);
+		}
+
 		//created a way to render all the points onto the screen. T
 		for (const Vector2f point : points)
 		{
-			CircleShape triangle(8, 3);
-			triangle.setPosition(point);
-			triangle.setOutlineThickness(2);
-			triangle.setOutlineColor(Color(250, 150, 100));
-			window.draw(triangle);
+			CircleShape circle;
+			circle.setRadius(1);
+			circle.setPosition(point);
+			circle.setOutlineThickness(1);
+			circle.setOutlineColor(Color(56, 138, 136));
+			window.draw(circle);
 		}
 		
 		window.display();
